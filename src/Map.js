@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import Popup from 'react-leaflet-editable-popup'
-import blueIcon from './Icons'
+import {blueIcon} from './Icons'
 
 
 class Map extends React.Component{
