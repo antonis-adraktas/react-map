@@ -1,44 +1,59 @@
-import React from 'react'
+import React, { createRef, Component } from 'react'
 import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import Popup from 'react-leaflet-editable-popup'
 import {blueIcon} from './Icons'
 
 
-class Map extends React.Component{
+type State = {
+    hasLocation: boolean,
+    latlng: {
+        lat: number,
+        lng: number,
+    },
+}
 
-    // constructor() {
-    //     super()
-    //     this.state = {
-    //         lat: 38.0018,
-    //         lng: 23.7423,
-    //         zoom: 13
-    //     }
-    // }
+
+class Map extends React.Component<{},State>{
+
+    state = {
+        hasLocation: false,
+        latlng: {
+            lat: 38.0018,
+            lng: 23.7423,
+        },
+    }
+    mapRef = createRef<LeafletMap>()
+
+    handleClick = () => {
+        const map = this.mapRef.current
+        if (map != null) {
+            map.leafletElement.locate()
+        }
+    }
+    handleLocationFound = (e: Object) => {
+        this.setState({
+            hasLocation: true,
+            latlng: e.latlng,
+        })
+    }
 
     render(){
-        const position = [38.0018, 23.7423];
+        const marker = this.state.hasLocation ? (
+            <Marker position={this.state.latlng} icon={blueIcon}>
+                <Popup removable editable>
+                    You are here and can edit this!
+                </Popup>
+            </Marker>
+        ) : null
         return (
-            <LeafletMap doubleClickZoom={false} id="mapId" zoom={13} center={[38.0018, 23.7423]}  >
+            <LeafletMap doubleClickZoom={false} id="mapId" zoom={13} center={this.state.latlng}
+                        onClick={this.handleClick}
+                        onLocationfound={this.handleLocationFound}
+                        ref={this.mapRef}>
 
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={position} icon={blueIcon}>
-                    <Popup maxWidth="600" removable editable >
-                        Removable editable popup
-                    </Popup>
-                </Marker>
-
-                <Marker position={[38.01, 23.74]} icon={blueIcon}  >
-                    <Popup removable>
-                        A removable popup
-                    </Popup>
-                </Marker>
-
-                <Marker position={[38.015, 23.75]} icon={blueIcon}>
-                    <Popup maxWidth="500" editable>
-                        Editable popup
-                    </Popup>
-                </Marker>
+                {marker}
             </LeafletMap>
 
 
