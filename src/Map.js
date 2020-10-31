@@ -13,7 +13,7 @@ type State = {
 }
 
 
-class Map extends React.Component<{},State>{
+class Map extends Component<{},State>{
 
     state = {
         hasLocation: false,
@@ -22,7 +22,7 @@ class Map extends React.Component<{},State>{
             lng: 23.7423,
         },
     }
-    mapRef = createRef<LeafletMap>()
+    mapRef = createRef();
 
     handleClick = () => {
         const map = this.mapRef.current
