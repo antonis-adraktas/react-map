@@ -16,6 +16,7 @@
     "react-leaflet-editable-popup": "^1.1.4",
     "react-leaflet-search": "^2.0.1",
     "react-scripts": "^4.0.0",
+    "save-dev": "0.0.1-security",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
