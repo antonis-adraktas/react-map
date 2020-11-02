@@ -47,15 +47,15 @@ class Map extends Component<{},State>{
             </Marker>
         ) : null
         return (
-            <LeafletMap doubleClickZoom={false} id="mapId" zoom={13} center={this.state.latlng}
-                        onClick={this.handleClick}
+            <LeafletMap doubleClickZoom={false} id="mapId" zoom={11} center={this.state.latlng}
                         onLocationfound={this.handleLocationFound}
                         ref={this.mapRef}>
 
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 {marker}
-                <Search position="topleft" markerIcon={redIcon}/>
+                <Search position="topleft" markerIcon={redIcon} zoom={14}/>
+                <button id="findMe" onClick={ this.handleClick }>Find my location</button>
             </LeafletMap>
 
 

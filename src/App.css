@@ -32,6 +32,14 @@
   z-index: 0;
 }
 
+#findMe{
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  z-index: 1000000;
+  font-size: 1.5em;
+}
+
 .App-link {
   color: #61dafb;
 }
