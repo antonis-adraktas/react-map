@@ -2,6 +2,7 @@ import React, { createRef, Component } from 'react'
 import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import Popup from 'react-leaflet-editable-popup'
 import {blueIcon} from './Icons'
+import Search from "react-leaflet-search";
 
 
 type State = {
@@ -54,6 +55,7 @@ class Map extends Component<{},State>{
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 {marker}
+                <Search position="topleft" markerIcon={blueIcon}/>
             </LeafletMap>
 
 
