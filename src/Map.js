@@ -39,9 +39,9 @@ class Map extends Component<{},State>{
         if (map != null) {
             map.leafletElement.locate()
         }
-        // if (this.state.hasLocation){
-        //     map.leafletElement.flyTo(this.state.latlng,13)
-        // }
+        if (this.state.hasLocation){
+            map.leafletElement.flyTo(this.state.latlng,13)
+        }
 
 
 
@@ -51,7 +51,7 @@ class Map extends Component<{},State>{
             hasLocation: true,
             latlng: e.latlng,
         })
-        // this.mapRef.current.leafletElement.flyTo(this.state.latlng,13)
+        this.mapRef.current.leafletElement.flyTo(this.state.latlng,13)
     }
 
     render(){
