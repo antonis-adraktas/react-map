@@ -25,11 +25,26 @@ class Map extends Component<{},State>{
     }
     mapRef = createRef();
 
+    removeMarker = () => {
+        this.mapRef.current.leafletElement.closePopup()
+
+        this.setState({
+            hasLocation: false,
+            latlng: null
+        })
+    }
+
     handleClick = () => {
         const map = this.mapRef.current
         if (map != null) {
             map.leafletElement.locate()
         }
+        if (this.state.hasLocation){
+            map.leafletElement.setView(this.state.latlng,13)
+        }
+
+
+
     }
     handleLocationFound = (e: Object) => {
         this.setState({
@@ -41,13 +56,14 @@ class Map extends Component<{},State>{
     render(){
         const marker = this.state.hasLocation ? (
             <Marker position={this.state.latlng} icon={blueIcon}>
-                <Popup removable editable>
+                <Popup removable editable
+                       removalCallback={ () => { this.removeMarker() } }>
                     You are here and can edit this!
                 </Popup>
             </Marker>
         ) : null
         return (
-            <LeafletMap doubleClickZoom={false} id="mapId" zoom={11} center={this.state.latlng}
+            <LeafletMap doubleClickZoom={false} id="mapId" zoom={13} center={this.state.latlng}
                         onLocationfound={this.handleLocationFound}
                         ref={this.mapRef}>
 
