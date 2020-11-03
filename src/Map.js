@@ -51,7 +51,7 @@ class Map extends Component<{},State>{
             hasLocation: true,
             latlng: e.latlng,
         })
-        this.mapRef.current.leafletElement.flyTo(this.state.latlng,13)
+        // this.mapRef.current.leafletElement.flyTo(this.state.latlng,13)
     }
 
     render(){
