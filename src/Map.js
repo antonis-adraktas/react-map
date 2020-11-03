@@ -40,7 +40,7 @@ class Map extends Component<{},State>{
             map.leafletElement.locate()
         }
         if (this.state.hasLocation){
-            map.leafletElement.setView(this.state.latlng,13)
+            map.leafletElement.flyTo(this.state.latlng,13)
         }
 
 
@@ -51,6 +51,7 @@ class Map extends Component<{},State>{
             hasLocation: true,
             latlng: e.latlng,
         })
+        this.mapRef.current.leafletElement.flyTo(this.state.latlng,13)
     }
 
     render(){
@@ -63,7 +64,7 @@ class Map extends Component<{},State>{
             </Marker>
         ) : null
         return (
-            <LeafletMap doubleClickZoom={false} id="mapId" zoom={13} center={this.state.latlng}
+            <LeafletMap doubleClickZoom={false} id="mapId" zoom={11} center={[38,23.74]}
                         onLocationfound={this.handleLocationFound}
                         ref={this.mapRef}>
 
