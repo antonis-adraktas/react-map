@@ -3,7 +3,7 @@ import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet'
 import Popup from 'react-leaflet-editable-popup'
 import {blueIcon,redIcon} from './Icons'
 import Search from "react-leaflet-search";
-import firebaseconfig from './firebaseconfig'
+import firebaseconfig from '../firebaseconfig'
 
 
 type State = {
